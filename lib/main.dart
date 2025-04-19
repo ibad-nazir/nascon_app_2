@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nascon_app/pages/dashboard/screens/dashboard_screen.dart';
+import 'package:nascon_app/pages/intro/screens/intro_screen.dart';
 import 'package:nascon_app/pages/plans/screens/choose_plan.dart';
 import 'package:nascon_app/pages/splash_screen/screen/splash_screen.dart';
 import 'package:nascon_app/pages/workspace/create/screeens/create_workspace.dart';
@@ -25,7 +26,7 @@ class MainApp extends StatelessWidget {
       darkTheme: ThemeData.dark(
         useMaterial3: true,
       ),
-      home: Dashboard(),
+      home: SplashScreen(),
 
       // Scaffold(
       //   backgroundColor: Theme.of(context).brightness == Brightness.dark

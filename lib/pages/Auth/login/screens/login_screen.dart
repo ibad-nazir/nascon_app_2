@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nascon_app/pages/Auth/signup/screens/signup.dart';
+import 'package:nascon_app/pages/workspace/create/screeens/create_workspace.dart';
 
 import '../../../../common/constants.dart';
 import '../../forget_password/screens/forgot_password.dart';
@@ -159,19 +160,30 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.all(22),
-            child: Container(
-              width: double.infinity,
-              height: 55,
-              decoration: BoxDecoration(
-                color: secondary_color,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  "Sign In",
-                  style: GoogleFonts.poppins(fontSize: 17, color: Colors.white),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateWorkSpace(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: EdgeInsets.all(22),
+              child: Container(
+                width: double.infinity,
+                height: 55,
+                decoration: BoxDecoration(
+                  color: secondary_color,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    "Sign In",
+                    style:
+                        GoogleFonts.poppins(fontSize: 17, color: Colors.white),
+                  ),
                 ),
               ),
             ),

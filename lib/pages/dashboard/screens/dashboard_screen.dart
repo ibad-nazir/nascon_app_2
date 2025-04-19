@@ -4,6 +4,10 @@ import 'package:flutter_image_stack/flutter_image_stack.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nascon_app/common/constants.dart';
 import 'package:nascon_app/main.dart';
+import 'package:nascon_app/pages/project_details/screens/project_details.dart';
+import 'package:nascon_app/pages/task/screen/task.dart';
+
+import '../../Auth/forget_password/screens/forgot_password.dart';
 
 class Dashboard extends StatefulWidget {
   Dashboard({super.key});
@@ -52,27 +56,84 @@ class _DashboardState extends State<Dashboard> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).brightness == Brightness.dark
-                        ? Colors.orange
-                        : secondary_color,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: Offset(0, 3), // changes position of shadow
+                GestureDetector(
+                  onTap: () {
+                    final actions = [
+                      CupertinoActionSheetAction(
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            Icon(
+                              CupertinoIcons.add,
+                              color: Colors.black,
+                            ),
+                            Text("  Create Task"),
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
-                  child: Icon(
-                    CupertinoIcons.add,
-                    size: 20,
-                    color: Colors.white,
+                      CupertinoActionSheetAction(
+                        onPressed: () {},
+                        child: Text("Create Project"),
+                      ),
+                      CupertinoActionSheetAction(
+                        onPressed: () {},
+                        child: Text("Create Team"),
+                      ),
+                      CupertinoActionSheetAction(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgotPassword(),
+                            ),
+                          );
+                        },
+                        child: Text("Create Project"),
+                      ),
+                    ];
+                    showModalBottomSheet(
+                      context: context,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      builder: (BuildContext context) {
+                        return Wrap(
+                          children: actions
+                              .map(
+                                (action) => ListTile(
+                                  title: action.child,
+                                  onTap: action.onPressed,
+                                ),
+                              )
+                              .toList(),
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.orange
+                          : secondary_color,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Icon(
+                      CupertinoIcons.add,
+                      size: 20,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -267,46 +328,51 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 14),
-                  child: Container(
-                    height: 160,
-                    width: 430,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                        color: Colors.grey.withOpacity(0.4),
-                        width: 1,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProjectDetails(),
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset: Offset(0, 3), // changes position of shadow
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 14),
+                    child: Container(
+                      height: 160,
+                      width: 430,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          color: Colors.grey.withOpacity(0.4),
+                          width: 1,
                         ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 6.0,
-                        right: 6,
-                        bottom: 6,
-                        top: 16,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 5,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
                       ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  // Add your onTap logic here
-                                },
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10.0, top: 15),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 6.0,
+                          right: 6,
+                          bottom: 6,
+                          top: 16,
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, top: 15),
                                   child: Text(
                                     "Main UiKit",
                                     style: GoogleFonts.poppins(
@@ -316,110 +382,112 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                   ),
                                 ),
-                              ),
-                              FlutterImageStack(
-                                imageList: _images,
-                                // showTotalCount: true,
-                                totalCount: 3,
-                                itemRadius: 35, // Radius of each images
-                                itemCount:
-                                    3, // Maximum number of images to be shown in stack
-                                itemBorderWidth:
-                                    2, // Border width around the images
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.calendar_month,
-                                  size: 18,
-                                ),
-                                Text(
-                                    "  ${timenow.day}/${timenow.month}/${timenow.year}",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      color: textColor,
-                                    )),
-                                Spacer(),
-                                Text("------- >",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      color: textColor,
-                                    )),
-                                Spacer(),
-                                Icon(
-                                  Icons.calendar_month,
-                                  size: 18,
-                                  color: secondary_color,
-                                ),
-                                Text(
-                                  "  ${time1monthlater.day}/${time1monthlater.month}/${time1monthlater.year}",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    color: secondary_color,
-                                  ),
+                                FlutterImageStack(
+                                  imageList: _images,
+                                  // showTotalCount: true,
+                                  totalCount: 3,
+                                  itemRadius: 35, // Radius of each images
+                                  itemCount:
+                                      3, // Maximum number of images to be shown in stack
+                                  itemBorderWidth:
+                                      2, // Border width around the images
                                 ),
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Row(children: [
-                              Text(
-                                "50%",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  color: textColor,
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.calendar_month,
+                                    size: 18,
+                                  ),
+                                  Text(
+                                      "  ${timenow.day}/${timenow.month}/${timenow.year}",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        color: textColor,
+                                      )),
+                                  Spacer(),
+                                  Text("------->",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 14,
+                                        color: textColor,
+                                      )),
+                                  Spacer(),
+                                  Icon(
+                                    Icons.calendar_month,
+                                    size: 18,
+                                    color: secondary_color,
+                                  ),
+                                  Text(
+                                    "  ${time1monthlater.day}/${time1monthlater.month}/${time1monthlater.year}",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      color: secondary_color,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Row(children: [
+                                Text(
+                                  "50%",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: textColor,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                height: 10,
-                                width: 200,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(5),
+                                SizedBox(
+                                  width: 10,
                                 ),
-                                child: LinearProgressIndicator(
-                                  borderRadius: BorderRadius.circular(15),
-                                  value: 0.5,
-                                  backgroundColor: Colors.grey.withOpacity(0.2),
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      secondary_color),
+                                Container(
+                                  height: 10,
+                                  width: 200,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: LinearProgressIndicator(
+                                    borderRadius: BorderRadius.circular(15),
+                                    value: 0.5,
+                                    backgroundColor:
+                                        Colors.grey.withOpacity(0.2),
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        secondary_color),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "24",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  color: Colors.grey,
+                                SizedBox(
+                                  width: 10,
                                 ),
-                              ),
-                              Text(
-                                "/48 Tasks",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  color: textColor,
+                                Text(
+                                  "24",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                  ),
                                 ),
-                              ),
-                            ]),
-                          )
-                        ],
+                                Text(
+                                  "/48 Tasks",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: textColor,
+                                  ),
+                                ),
+                              ]),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -429,33 +497,43 @@ class _DashboardState extends State<Dashboard> {
             SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                Icon(CupertinoIcons.check_mark_circled_solid,
-                    color: Theme.of(context).brightness == Brightness.dark
-                        ? Colors.orange
-                        : Colors.orange),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "Your Recent Task",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    color: textColor,
-                    fontWeight: FontWeight.w600,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TaskScreen(),
                   ),
-                ),
-                Spacer(),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    CupertinoIcons.arrow_right,
-                    color: Colors.black,
-                    size: 18,
+                );
+              },
+              child: Row(
+                children: [
+                  Icon(CupertinoIcons.check_mark_circled_solid,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.orange
+                          : Colors.orange),
+                  SizedBox(
+                    width: 10,
                   ),
-                ),
-              ],
+                  Text(
+                    "Your Recent Task",
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: textColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      CupertinoIcons.arrow_right,
+                      color: Colors.black,
+                      size: 18,
+                    ),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: ListView.builder(

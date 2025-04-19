@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nascon_app/common/constants.dart';
 import 'package:nascon_app/main.dart';
+import 'package:nascon_app/pages/dashboard/screens/dashboard_screen.dart';
 
 class ChoosePlan extends StatefulWidget {
   const ChoosePlan({super.key});
@@ -233,18 +234,28 @@ class _ChoosePlanState extends State<ChoosePlan> {
                       //   ),
                       // );
                     },
-                    child: Container(
-                      width: double.infinity,
-                      height: 55,
-                      decoration: BoxDecoration(
-                        color: secondary_color,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Continue",
-                          style: GoogleFonts.poppins(
-                              fontSize: 17, color: Colors.white),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Dashboard(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: secondary_color,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Continue",
+                            style: GoogleFonts.poppins(
+                                fontSize: 17, color: Colors.white),
+                          ),
                         ),
                       ),
                     ),

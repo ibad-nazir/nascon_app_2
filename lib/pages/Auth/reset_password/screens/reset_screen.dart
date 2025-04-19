@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nascon_app/pages/workspace/create/screeens/create_workspace.dart';
 
 import '../../../../common/constants.dart';
 import '../../../../main.dart';
@@ -180,18 +181,28 @@ class _ResetPasswordState extends State<ResetPassword> {
                 //   ),
                 // );
               },
-              child: Container(
-                width: double.infinity,
-                height: 55,
-                decoration: BoxDecoration(
-                  color: secondary_color,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    "Next →",
-                    style:
-                        GoogleFonts.poppins(fontSize: 17, color: Colors.white),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CreateWorkSpace(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: secondary_color,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Next →",
+                      style: GoogleFonts.poppins(
+                          fontSize: 17, color: Colors.white),
+                    ),
                   ),
                 ),
               ),

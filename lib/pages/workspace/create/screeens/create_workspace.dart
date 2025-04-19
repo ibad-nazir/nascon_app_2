@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nascon_app/main.dart';
+import 'package:nascon_app/pages/plans/screens/choose_plan.dart';
 
 import '../../../../common/constants.dart';
 
@@ -191,18 +192,28 @@ class CreateWorkSpace extends StatelessWidget {
                     //   ),
                     // );
                   },
-                  child: Container(
-                    width: double.infinity,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: secondary_color,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Create",
-                        style: GoogleFonts.poppins(
-                            fontSize: 17, color: Colors.white),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChoosePlan(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 55,
+                      decoration: BoxDecoration(
+                        color: secondary_color,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Create",
+                          style: GoogleFonts.poppins(
+                              fontSize: 17, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),

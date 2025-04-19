@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nascon_app/pages/splash_screen/screen/splash_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,14 +17,16 @@ class MainApp extends StatelessWidget {
       darkTheme: ThemeData.dark(
         useMaterial3: true,
       ),
-      home: Scaffold(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Color(0xff1c1244)
-            : Colors.white,
-        body: Center(
-          child: Text('Ibad Nazier!'),
-        ),
-      ),
+      home: SplashScreen(),
+
+      // Scaffold(
+      //   backgroundColor: Theme.of(context).brightness == Brightness.dark
+      //       ? Color(0xff1c1244)
+      //       : Colors.white,
+      //   body: Center(
+      //     child: Text('Ibad Nazier!'),
+      //   ),
+      // ),
     );
   }
 }

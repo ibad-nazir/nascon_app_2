@@ -1,28 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nascon_app/pages/Auth/login/screens/login_screen.dart';
+import 'package:nascon_app/pages/Auth/signup/screens/signup.dart';
 
 import '../../../../common/constants.dart';
+import '../../forget_password/screens/forgot_password.dart';
 
-class SignUp extends StatefulWidget {
-  SignUp({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpState extends State<SignUp> {
-  final TextEditingController _nameController = TextEditingController();
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _passwordController = TextEditingController();
 
-  final TextEditingController _passwordController = TextEditingController();
+bool showEyeOpned = false;
+bool showPasswrod = true;
 
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
-  bool showPasswrod = false;
-  bool showEyeOpned = true;
-
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +43,7 @@ class _SignUpState extends State<SignUp> {
           Align(
             alignment: Alignment.center,
             child: Text(
-              "Sign Up",
+              "Sign In",
               style: GoogleFonts.poppins(
                 fontSize: 26,
                 fontWeight: FontWeight.w600,
@@ -66,14 +63,14 @@ class _SignUpState extends State<SignUp> {
                 elevation: 5,
                 child: TextFormField(
                   style: GoogleFonts.poppins(fontSize: 14, color: Colors.black),
-                  controller: _nameController,
+                  controller: _emailController,
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(top: 13),
                       prefixIcon: Icon(
                         CupertinoIcons.person,
                         color: Colors.black,
                       ),
-                      hintText: "Enter Name",
+                      hintText: "Enter email",
                       labelStyle: GoogleFonts.poppins(
                           fontSize: 14, color: Colors.black),
                       hintStyle: GoogleFonts.poppins(
@@ -101,59 +98,6 @@ class _SignUpState extends State<SignUp> {
                   style: GoogleFonts.poppins(fontSize: 14, color: Colors.black),
                   controller: _passwordController,
                   decoration: InputDecoration(
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 22.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              showPasswrod = !showPasswrod;
-                              showEyeOpned = !showEyeOpned;
-                            });
-                          },
-                          child: Icon(
-                            showEyeOpned
-                                ? CupertinoIcons.eye_slash
-                                : CupertinoIcons.eye,
-                            color: Colors.grey,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.only(top: 13),
-                      prefixIcon: Icon(
-                        CupertinoIcons.lock,
-                        color: Colors.black,
-                      ),
-                      hintText: "Enter Password",
-                      labelStyle: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w800),
-                      hintStyle: GoogleFonts.poppins(
-                        fontSize: 15,
-                        color: Color(0xFFBABABA),
-                      ),
-                      border: InputBorder.none),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22.0),
-            child: SizedBox(
-              height: 55, // Adjust the height as needed
-              child: Material(
-                borderRadius: BorderRadius.circular(13),
-                color: Colors.white,
-                elevation: 5,
-                child: TextFormField(
-                  obscureText: showPasswrod,
-                  style: GoogleFonts.poppins(fontSize: 14, color: Colors.black),
-                  controller: _confirmPasswordController,
-                  decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(top: 13),
                       prefixIcon: Icon(
                         CupertinoIcons.lock,
@@ -189,6 +133,32 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ForgotPassword(),
+                ),
+              );
+            },
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 22.0),
+                child: Text(
+                  "Forgot Password ?",
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: Colors.orange,
+                  ),
+                ),
+              ),
+            ),
+          ),
           Padding(
             padding: EdgeInsets.all(22),
             child: Container(
@@ -200,7 +170,7 @@ class _SignUpState extends State<SignUp> {
               ),
               child: Center(
                 child: Text(
-                  "Sign Up",
+                  "Sign In",
                   style: GoogleFonts.poppins(fontSize: 17, color: Colors.white),
                 ),
               ),
@@ -251,7 +221,7 @@ class _SignUpState extends State<SignUp> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "Already have Account ?",
+                "Don't have Account ?",
                 style: GoogleFonts.poppins(
                   color: Colors.grey,
                 ),
@@ -261,7 +231,7 @@ class _SignUpState extends State<SignUp> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => SignUp(),
                     ),
                   );
                 },

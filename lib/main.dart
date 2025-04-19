@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nascon_app/pages/plans/screens/choose_plan.dart';
 import 'package:nascon_app/pages/splash_screen/screen/splash_screen.dart';
+import 'package:nascon_app/pages/workspace/create/screeens/create_workspace.dart';
 
 Color textColor = Colors.black;
 void main() {
@@ -22,7 +24,7 @@ class MainApp extends StatelessWidget {
       darkTheme: ThemeData.dark(
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: ChoosePlan(),
 
       // Scaffold(
       //   backgroundColor: Theme.of(context).brightness == Brightness.dark
